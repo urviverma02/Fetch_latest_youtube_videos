@@ -22,4 +22,8 @@ APIs are
 
 Added 2 api keys so that if quota is exhausted on one, it automatically uses the next available key.
 
-
+Steps to setup Django Application
+RUN python manage.py migrate django_cron
+RUN python manage.py runcrons
+RUN python manage.py runserver 
+  
