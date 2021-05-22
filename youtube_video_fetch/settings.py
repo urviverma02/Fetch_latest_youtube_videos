@@ -57,9 +57,8 @@ MIDDLEWARE = [
 
 
 CRON_CLASSES = [
-    "youtube_api.cron.FetchYouTube",
+    "youtube_api.views.FetchYouTube",
 ]
-
 
 
 ROOT_URLCONF = 'youtube_video_fetch.urls'
