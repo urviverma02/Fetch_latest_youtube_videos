@@ -27,3 +27,6 @@ RUN python manage.py migrate django_cron
 RUN python manage.py runcrons
 RUN python manage.py runserver 
   
+
+What can be improve
+1. We can use celery+redis for implmenting cron.
