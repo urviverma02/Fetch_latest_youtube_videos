@@ -12,7 +12,7 @@ from django_cron import CronJobBase, Schedule
 from apiclient.discovery import build
 import apiclient
 
-query_for_search="boating|sailing"
+
 
 
 class Pagination(CursorPagination):
@@ -31,10 +31,8 @@ class YoutubeItems(generics.ListAPIView):
 
 
 class FetchYouTube(CronJobBase):
-    RUN_EVERY_MIN = 2 
 
-    schedule = Schedule(run_every_mins=RUN_EVERY_MIN)
-    code = 'FetchYouTube'    
+    schedule = Schedule(run_every_mins=1) 
     code = 'youtube_api.FetchYouTube'
     def do(self):
         apiKeys = settings.YOUTUBE_API_KEYS
@@ -45,7 +43,7 @@ class FetchYouTube(CronJobBase):
         for apiKey in apiKeys:
             try:
                 youtube = build("youtube", "v3", developerKey=apiKey)
-                req = youtube.search().list( q="football", part="snippet",order="date", maxResults=50)
+                req = youtube.search().list( q="football", part="snippet",order="date", maxResults=50 ,publishedAfter=last_request))
                 res = req.execute()
                 valid = True
             except apiclient.errors.HttpError as err:
